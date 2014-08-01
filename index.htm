@@ -1,51 +1,33 @@
-<html> <head> <title>My first Three.js app</title>
-<style>canvas { width: 100%; height: 100% }</style>
-</head>
-<body>
-
-<script src="build/three.min.js"></script>
-<script type="build/gui/javascript" src="build/gui/dat.gui.js"></script>
-<script> var scene = new THREE.Scene(); 
-var camera = new THREE.PerspectiveCamera(75, 
-window.innerWidth/window.innerHeight, 0.1, 1000); 
-var renderer = new THREE.WebGLRenderer(); 
-renderer.setClearColorHex(0xEEEEEE);
-renderer.setSize(window.innerWidth, window.innerHeight);
+<html> <head> <title>My first Three.js app</title> <style>canvas { width: 100%; height: 100% }</style> </head> <body>
 
 
 
+    <script  src="build/three.min.js"></script>
 
-document.body.appendChild(renderer.domElement); 
+    <script  src="js/gui/dat.gui.js"></script>
+ <script>
 
-var spotLight = new THREE.SpotLight( 0xffffff );
-spotLight.position.set( -40, 60, -10 );
-scene.add( spotLight );
+ 	var scene = new THREE.Scene(); var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000); 
+	var renderer = new THREE.WebGLRenderer(); 
+	renderer.setSize(window.innerWidth, window.innerHeight); document.body.appendChild(renderer.domElement); 
+	var geometry = new THREE.BoxGeometry(1,1,1); 
+	var material = new THREE.MeshBasicMaterial({color: #8e6e93}); var cube = new THREE.Mesh(geometry, material); 
+	scene.add(cube); camera.position.z = 5; var render = function () { requestAnimationFrame(render); cube.rotation.x += 0.1; 
+	cube.rotation.y += 0.1; renderer.render(scene, camera); };
 
-var controls = new function() {
-this.rotationSpeed = 0.02;
-this.bouncingSpeed = 0.03;
-}
+      // call the render function
+        var step=0;
 
-var gui = new dat.GUI();
-gui.add(controls, 'rotationSpeed',0,0.5);
-gui.add(controls, 'bouncingSpeed',0,0.5);
+        var controls = new function() {
+            this.rotationSpeed = 0.02;
+            this.bouncingSpeed = 0.03;
+        }
 
+        var gui = new dat.GUI();
+        gui.add(controls, 'rotationSpeed',0,0.5);
+        gui.add(controls, 'bouncingSpeed',0,0.5);
 
-var geometry = new THREE.BoxGeometry(1,1,1); 
-
-var material = new THREE.MeshLambertMaterial({color: 0x00ff00}); 
-
-var cube = new THREE.Mesh(geometry, material); scene.add(cube); 
-
-cube.castShadow = true;
-
-camera.position.z = 5; var render = function ()
-{ requestAnimationFrame(render); 
-cube.rotation.x += 0.1; cube.rotation.y += 0.1;
-
-cube.rotation.x += controls.rotationSpeed;
-cube.rotation.y += controls.rotationSpeed;
-cube.rotation.z += controls.rotationSpeed;
-
- renderer.render(scene, camera); }; 
-render(); </script> </body> </html>
+     
+var render = function () { requestAnimationFrame(render); cube.rotation.x += 0.1; cube.rotation.y += 0.1; renderer.render(scene, camera); }; 
+    
+ render(); </script> </body> </html>
