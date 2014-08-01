@@ -1,13 +1,13 @@
 <html> <head> <title>My first Three.js app</title> <style>
 canvas { width: 100%; height: 100% }</style> </head> <body>
  <script src="build/three.min.js">
- <script src="js/Detector.js"></script>
+
  
  
  </script> <script> 
  
  
- if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
 
  
  
@@ -23,27 +23,13 @@ canvas { width: 100%; height: 100% }</style> </head> <body>
  
  document.body.appendChild(renderer.domElement); 
  
- var geometry = new THREE.BoxGeometry(1,1,1); 
+ 
  var geometry = new THREE.SphereGeometry( 100, 32, 16 );
  
  
  
  var material = new THREE.MeshBasicMaterial({color: 0x00ff00}); 
- var textureCube = THREE.ImageUtils.loadTextureCube( urls, new THREE.CubeRefractionMapping() );
-var material = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube, refractionRatio: 0.95 } );
 
-for ( var i = 0; i < 500; i ++ ) {
-
-					var mesh = new THREE.Mesh( geometry, material );
-					mesh.position.x = Math.random() * 10000 - 5000;
-					mesh.position.y = Math.random() * 10000 - 5000;
-					mesh.position.z = Math.random() * 10000 - 5000;
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = Math.random() * 3 + 1;
-					scene.add( mesh );
-
-					spheres.push( mesh );
-
-				}
 
 
  var cube = new THREE.Mesh(geometry, material); 
